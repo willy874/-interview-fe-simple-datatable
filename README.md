@@ -1,20 +1,51 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# 如何啟動 mock server
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+* 確認你的環境能夠使用 docker / make 指令
+* 執行 `make run-mock`
+* 用 browser 打開 `http://localhost:8000/docs` 確認 mock api server 是否正確啟動
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+# 任務需求
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+請完成一個 web application、使用的 js/css techstack 不限、但必須滿足以下條件
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+* 必須是 SPA(single page application) 形式
+* CSR(client side rendering) only，最後成品必須要能夠以 static file 的方式 deploy
+* 包含以下 route
+  * /login - 登入頁面
+  * /logout - 登出頁面
+  * /products - 商品列表頁面，這頁需要登入
+
+
+# 頁面細節
+
+### /login
+
+* 一個簡單的 login form，上下左右置中對齊
+* 登入成功後，自動轉導至 /products
+![login page](images/login.jpg)
+
+
+### /logout
+
+* 無 wireframe
+* 置中顯示
+```
+已登出
+將於 10 秒後自動回到登入頁面
+```
+* 10 秒後會自動將使用者轉導回 /login
+
+
+### /products
+
+* 呼叫 product api 並將對應的資料顯示在 data table 上
+* data table 需要實作以下功能並以對應的參數呼叫 product api:
+  * 搜尋商品名稱
+  * 針對不同的欄位進行排序
+  * 分頁功能
+    * 能顯示現在頁面以及總頁面數量
+    * 能夠切換單一頁面顯示商品數量 (10/20/40)
+  * 低庫存警告(庫存 <= 10 的時候顯示)
+  * 總價值顯示(庫存 * 價格)
+
+![data table](images/datatable.jpg)
