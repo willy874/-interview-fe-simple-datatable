@@ -101,7 +101,7 @@ def list_products(
     sort_by: SortByEnum = Query(SortByEnum.NAME, description="排序依據"),
     order_by: OrderByEnum = Query(OrderByEnum.ASC, description="排序方向"),
     page_size: int = Query(20, ge=10, le=50, description="每頁個數"),
-):
+) -> ListProductResponse:
     def _get_sort_key(p: Product):
         if sort_by == SortByEnum.NAME:
             return p.name
