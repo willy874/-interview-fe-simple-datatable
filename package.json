@@ -1,0 +1,12 @@
+{
+  "name": "fe-simple-datatable",
+  "scripts": {
+    "start": "pnpm --filter web dev",
+    "build": "pnpm --filter web build"
+  },
+  "engines": {
+    "node": ">=20.11.0",
+    "pnpm": "^9.14.2"
+  },
+  "packageManager": "pnpm@9.14.2"
+}
