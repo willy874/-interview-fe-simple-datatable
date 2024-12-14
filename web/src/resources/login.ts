@@ -11,7 +11,6 @@ const LoginResponseDTOSchema = z.object({
   token: z.string(),
 })
 
-
 export const LoginResource = {
   path: '/login',
   method: 'POST',

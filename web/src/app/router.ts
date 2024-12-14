@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { routes as authRoutes } from '@/features/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,20 +9,11 @@ const router = createRouter({
       name: 'home',
       redirect: '/products',
     },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('../views/LoginView.vue'),
-    },
-    {
-      path: '/logout',
-      name: 'logout',
-      component: () => import('../views/LogoutView.vue'),
-    },
+    ...authRoutes,
     {
       path: '/products',
       name: 'products',
-      component: () => import('../views/ProductListView.vue'),
+      component: () => import('../features/product/ProductView.vue'),
     },
   ],
 })
