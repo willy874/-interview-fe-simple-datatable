@@ -8,10 +8,10 @@ import { useLocalStorage } from '@/libs/storage';
 import { useLoginService } from './services';
 
 const router = useRouter()
-const storage = useLocalStorage('ACCESS_TOKEN')
+const accessToken = useLocalStorage('ACCESS_TOKEN')
 
 onMounted(() => {
-  if (storage.value) {
+  if (accessToken.value) {
     router.push('/')
   }
 })
@@ -95,7 +95,7 @@ const fetchLogin = (form: z.infer<typeof loginFormSchema>) => {
   })
   .then((response) => {
     if (response.status === 200) {
-      storage.value = response.body.token
+      accessToken.value = response.body.token
       router.push('/')
     }
   })

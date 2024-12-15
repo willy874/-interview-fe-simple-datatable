@@ -6,11 +6,11 @@ import { useLocalStorage } from '@/libs/storage';
 
 const router = useRouter()
 const timeoutSeconds = ref(10)
-const storage = useLocalStorage('ACCESS_TOKEN')
+const accessToken = useLocalStorage('ACCESS_TOKEN')
 let clear: () => void
 
 onMounted(() => {
-  storage.value = null
+  accessToken.value = null
   clear = preciseCountDown({
     timeout: 1000 * 10,
     onTick: ({ currentTime, targetTime }) => {
