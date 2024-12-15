@@ -3,12 +3,10 @@ import { computed, reactive, ref } from 'vue';
 import { ElTable, ElTableColumn, ElInput, ElButton, ElPagination, ElForm, ElFormItem, ElSelect, ElOption } from 'element-plus';
 import type { FormItemRule } from 'element-plus';
 import { Search } from '@element-plus/icons-vue'
-import { useProductService } from './services';
+import { useGetProductList, useLogout } from './services';
 import { useQuery } from '@tanstack/vue-query';
 import type { ProductModel } from '@/resources/products';
 import type { SortChangeInfo, TableScope } from '@/libs/ui';
-import { useRouter } from 'vue-router';
-import { useLocalStorage } from '@/libs/storage';
 
 const DEFAULT_CURRENT_PAGE = 1
 const DEFAULT_PAGE_SIZE = 10
@@ -80,26 +78,21 @@ const filterKey = computed(() => {
   ] as const
 })
 
-const productService = useProductService()
+const getProductList = useGetProductList()
 const { data: products } = useQuery({
   queryKey: filterKey,
   queryFn: ({ queryKey }) => {
     const [_, search, currentPage, pageSize, orderBy, sortKey] = queryKey
-    return productService.getProductList({
-      query: {
+    return getProductList({
         q: search,
         p: currentPage,
         page_size: pageSize,
         order_by: orderBy,
         sort_by: sortKey,
-      }
-    }).then((res) => {
-      if (res.status === 200) {
+      }).then((res) => {
         form.total = res.body.total
         return res
-      }
-      throw new Error('Failed to fetch product list')
-    })
+      })
   },
   select: (data) => data.body.products,
 })
@@ -143,12 +136,8 @@ const filterRules = {
   },
 } as const satisfies Record<string, FormItemRule>
 
-const router = useRouter()
-const accessToken = useLocalStorage('ACCESS_TOKEN')
-const onLogout = () => {
-  accessToken.value = null
-  router.push('/login')
-}
+const logout = useLogout()
+const onLogout = () => logout('/logout')
 </script>
 
 <template>

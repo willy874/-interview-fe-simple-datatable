@@ -22,11 +22,12 @@ const ListProductRequestDTOSchema = z.object({
   page_size: z.number().optional(),
 })
 
+export type ListProductRequestDTO = z.infer<typeof ListProductRequestDTOSchema>
+
 const ListProductResponseDTOSchema = z.object({
   products: z.array(ProductSchema),
   total: z.number(),
 })
-
 
 export const ListProductResource = {
   path: '/products',
@@ -35,6 +36,7 @@ export const ListProductResource = {
   responses: {
     200: ListProductResponseDTOSchema,
     400: HTTPErrorResponseDTOSchema,
+    403: HTTPErrorResponseDTOSchema,
     422: HTTPValidationErrorResponseDTOSchema
   }
 } as const satisfies AppRouteQuery
