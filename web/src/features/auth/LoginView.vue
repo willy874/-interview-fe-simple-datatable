@@ -22,8 +22,8 @@ enum Field {
 }
 
 const loginForm = reactive({
-  [Field.USERNAME]: '',
-  [Field.PASSWORD]: '',
+  [Field.USERNAME]: 'testuser',
+  [Field.PASSWORD]: 'ShowMeTheMoney',
 })
 
 const helperTexts = reactive({

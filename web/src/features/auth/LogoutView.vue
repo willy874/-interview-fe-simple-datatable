@@ -13,8 +13,8 @@ onMounted(() => {
   storage.value = null
   clear = preciseCountDown({
     timeout: 1000 * 10,
-    onTick: (seconds) => {
-      timeoutSeconds.value = seconds
+    onTick: ({ currentTime, targetTime }) => {
+      timeoutSeconds.value = Math.ceil((targetTime - currentTime) / 1000)
     },
     onEnd: () => {
       router.push('/login')
@@ -29,8 +29,10 @@ onUnmounted(() => {
 
 <template>
   <div class="logout-page">
-    <div>已登出</div>
-    <div>將於 {{ timeoutSeconds }} 秒後自動回到登入頁面</div>
+    <div>
+      <div>已登出</div>
+      <div>將於 {{ timeoutSeconds }} 秒後自動回到登入頁面</div>
+    </div>
   </div>
 </template>
 
@@ -42,5 +44,6 @@ onUnmounted(() => {
   height: 100vh;
   font-size: 24px;
   color: #333;
+  text-align: center;
 }
 </style>
