@@ -8,6 +8,8 @@ const ProductSchema = z.object({
   price: z.number(),
 })
 
+export type ProductModel = z.infer<typeof ProductSchema>
+
 const ListProductRequestDTOSchema = z.object({
   q: z.string().min(2).optional(), // key word search
   p: z.number().optional(), // page

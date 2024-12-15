@@ -1,4 +1,5 @@
 import { useEnvironment } from "@/libs/env";
+import { useLocalStorage } from "@/libs/storage";
 import { ListProductResource } from "@/resources/products";
 import { initClient, initContract } from "@ts-rest/core";
 
@@ -10,7 +11,11 @@ const router = c.router({
 
 export const useProductService = () => {
   const env = useEnvironment()
+  const accessToken = useLocalStorage('ACCESS_TOKEN')
   return initClient(router, {
-    baseUrl: env.VITE_ORIGIN_URL
+    baseUrl: env.VITE_ORIGIN_URL,
+    baseHeaders: {
+      Authorization: `Bearer ${accessToken.value}`
+    }
   })
 }
