@@ -1,10 +1,35 @@
-# 如何啟動 mock server
+# Interview fe-simple-datatable
+
+## Setup
+
+### Requirement
+
+* pnpm 9.14.2
+* nodejs v20.11.0
+
+### Setup step
+
+```sh
+pnpm install
+cp web/.env.example web/.env
+pnpm --filter web dev
+```
+
+### Deployment
+
+```sh
+pnpm --filter web build
+```
+
+相關檔案在 `./web/dist`，可以被靜態部署 
+
+## 如何啟動 mock server
 
 * 確認你的環境能夠使用 docker / make 指令
 * 執行 `make run-mock`
 * 用 browser 打開 `http://localhost:8000/docs` 確認 mock api server 是否正確啟動
 
-# 任務需求
+## 任務需求
 
 請完成一個 web application、使用的 js/css techstack 不限、但必須滿足以下條件
 
@@ -16,7 +41,7 @@
   * /products - 商品列表頁面，這頁需要登入
 
 
-# 頁面細節
+## 頁面細節
 
 ### /login
 
