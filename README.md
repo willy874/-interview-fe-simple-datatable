@@ -18,10 +18,8 @@ pnpm --filter web dev
 ### Deployment
 
 ```sh
-pnpm --filter web build
+docker build -t symphox-tlf-fe-interview-web:latest -f web/Dockerfile .
 ```
-
-相關檔案在 `./web/dist`，可以被靜態部署 
 
 ## 如何啟動 mock server
 
