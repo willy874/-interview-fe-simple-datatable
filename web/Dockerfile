@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . /app/
 RUN npm -g install pnpm@9.14.2
 RUN pnpm install
-ENV VITE_ORIGIN_URL=/
+ENV VITE_ORIGIN_URL=/api
 RUN pnpm --filter web build
 
 FROM nginx:latest AS web-service
